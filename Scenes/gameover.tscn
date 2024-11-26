@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwflmuxbapv5i"]
+
+[ext_resource type="Texture2D" uid="uid://jkv1ggk7f8ft" path="res://Resources/Images/GameOver.jpg" id="1_i64e7"]
+[ext_resource type="Script" path="res://Scripts/gameover.gd" id="1_pypo0"]
+
+[node name="Gameover" type="Node2D"]
+script = ExtResource("1_pypo0")
+
+[node name="GameOver" type="TextureRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 650.0
+texture = ExtResource("1_i64e7")
+expand_mode = 1
+
+[node name="back" type="Button" parent="."]
+offset_left = 185.0
+offset_top = 306.0
+offset_right = 474.0
+offset_bottom = 408.0
+text = "BACK TO MENU"
+
+[node name="restart" type="Button" parent="."]
+offset_left = 712.0
+offset_top = 293.0
+offset_right = 976.0
+offset_bottom = 405.0
+text = "RESTART GAME"
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

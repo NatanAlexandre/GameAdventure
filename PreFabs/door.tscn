@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://xisp5vu46b0j"]
+
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_g1iv7"]
+[ext_resource type="Texture2D" uid="uid://dtfcg1ntt2qqo" path="res://Sprites/Items/2 Animated objects/Entry.png" id="1_iacyl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngdpn"]
+atlas = ExtResource("1_iacyl")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu50k"]
+atlas = ExtResource("1_iacyl")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23vrs"]
+atlas = ExtResource("1_iacyl")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qjwk"]
+atlas = ExtResource("1_iacyl")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_764ww"]
+atlas = ExtResource("1_iacyl")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7yam"]
+atlas = ExtResource("1_iacyl")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vf03o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngdpn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu50k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23vrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qjwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_764ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7yam")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"open",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0uf5"]
+size = Vector2(95, 188.5)
+
+[node name="door" type="StaticBody2D"]
+script = ExtResource("1_g1iv7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-5.72205e-06, 4.25)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_vf03o")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0258305
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_y0uf5")
+debug_color = Color(0.929343, 3.21513e-05, 0.661108, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 3.75)
+shape = SubResource("RectangleShape2D_y0uf5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
